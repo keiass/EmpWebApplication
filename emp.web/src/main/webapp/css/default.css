@@ -1,0 +1,20 @@
+@media only screen and (max-width:430px), only screen and (max-device-width:430px), handheld{
+    .pc {
+        display: none;  /* 테이블에서 collapse에 적용된다. */
+        visibility: hidden;
+    }
+
+    td.pc {
+        visibility: collapse;
+    }
+
+    .content {
+        padding: 3px !important;
+        padding-bottom: 3px !important;
+        min-height: 250px !important;
+    }
+
+    h1,h2,h3,h4 {
+        font-size: 1.5em !important;
+    }
+}
