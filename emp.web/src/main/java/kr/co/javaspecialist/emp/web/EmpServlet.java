@@ -26,7 +26,13 @@ public class EmpServlet extends HttpServlet {
 		String path = "notfound";
 		if(paramNames.hasMoreElements()) {
 			path = paramNames.nextElement();
-			
+			if(path.equals("list")) {
+				ArrayList<EmpVO> emps = dao.getAllEmps();
+				request.setAttribute("empList", emps);
+				logger.info(emps);
+			}else if(path.equals("insert")) {
+
+			}
 		}else {
 			ArrayList<EmpVO> emps = dao.getAllEmps();
 			request.setAttribute("empList", emps);
