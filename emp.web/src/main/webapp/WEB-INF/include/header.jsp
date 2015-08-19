@@ -6,9 +6,11 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
+    <div class="page-header">
       <a class="navbar-brand" href="#">
         <fmt:message key="title"/>
       </a>
+    </div>
     </div>
   </div>
 </nav>

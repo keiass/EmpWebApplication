@@ -17,5 +17,6 @@ insert into emp values(7876, 'ADAMS', 'CLERK', 7788, '1987-05-23', 1100, NULL, 2
 insert into emp values(7900, 'JAMES', 'CLERK', 7698, '1981-12-03', 950, NULL, 30);
 insert into emp values(7902, 'FORD', 'ANALYST', 7566, '1981-12-03', 3000, NULL, 20);
 insert into emp values(7934, 'MILLER', 'CLERK', 7782, '1982-01-23', 1300, NULL, 10);
+insert into emp values(9000, '허진경', 'DEVELOPER', 7839, '2015-08-19', 4500, NULL, 10);
 
 commit;

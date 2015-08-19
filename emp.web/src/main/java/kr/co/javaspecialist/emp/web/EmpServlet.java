@@ -1,8 +1,11 @@
 package kr.co.javaspecialist.emp.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import kr.co.javaspecialist.emp.model.EmpDAO;
 import kr.co.javaspecialist.emp.model.EmpVO;
@@ -30,6 +36,19 @@ public class EmpServlet extends HttpServlet {
 				ArrayList<EmpVO> emps = dao.getAllEmps();
 				request.setAttribute("empList", emps);
 				logger.info(emps);
+				if("json".equals(request.getParameter("list"))) {
+					//ArrayList의 데이터를 JSON 데이터로 변환
+					Gson gson = new Gson();
+					String jsonStr = gson.toJson(emps);
+					response.setCharacterEncoding("utf-8");
+					response.getWriter().println(jsonStr);
+					
+					//JSON 데이터를 객체로 변환
+					Type collectionType = new TypeToken<List<EmpVO>>(){}.getType();
+					List<EmpVO> lists = gson.fromJson(jsonStr, collectionType);
+					logger.info(lists);;
+					return;
+				}
 			}else if(path.equals("insert")) {
 
 			}
