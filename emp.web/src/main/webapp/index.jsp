@@ -1,26 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setBundle basename="i18n/header" />
+<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <!DOCTYPE html>
 <html>
-<head>
-<%@ include file="/WEB-INF/include/head.jsp" %>
-</head>
+<jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
 <body>
-<header>
-<%@ include file="/WEB-INF/include/header.jsp" %>
-</header>
-<section>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Hello World!</h3>
-  </div>
-  <div class="panel-body">
-    content
-  </div>
+<div class="container">
+<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+<div class="content">
+Index
 </div>
-</section>
-<footer>
-</footer>
+</div>
+<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

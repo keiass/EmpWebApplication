@@ -20,3 +20,6 @@
     }
 }
 
+body div.content {
+	min-height: 400px;
+}

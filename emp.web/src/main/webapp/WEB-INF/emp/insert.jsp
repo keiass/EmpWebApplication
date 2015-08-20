@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle basename="i18n/header" />
+<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <!DOCTYPE html>
 <html>
-<head>
-<%@ include file="/WEB-INF/include/head.jsp" %>
-</head>
+<jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
 <body>
-<%@ include file="/WEB-INF/include/header.jsp" %>
-<h3>Emp Data Insert</h3>
-<form class="navbar-form navbar-left" role="search">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+<div class="container">
+<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+<div class="content">
+Emp Insert
+</div>
+</div>
+<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>
