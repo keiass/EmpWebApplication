@@ -17,7 +17,7 @@
     </datatables:column>
     <datatables:column title="ENAME" property="ename" cssStyle="width: 200px;"/>
     <datatables:column title="JOB" property="job"/>
-    <datatables:column cssClass="pc" cssCellClass="pc" title="MAMAGER" property="mgr"/>
+    <datatables:column cssClass="pc" cssCellClass="pc" title="MANAGER" property="mgr"/>
     <datatables:column cssClass="pc" cssCellClass="pc" title="HIREDATE" property="hiredate"/>
     <datatables:column cssClass="pc" cssCellClass="pc" title="SALARY" property="sal"/>
     <datatables:column cssClass="pc" cssCellClass="pc" title="COMMISSION" property="comm"/>
