@@ -4,11 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
-<jsp:include page="/include/staticFiles.jsp"/>
+<jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
 
 <body>
 <div class="container">
-<jsp:include page="/include/bodyHeader.jsp"/>
+<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
 <div class="pg-opt">
         <div class="container">
             <div class="row">
@@ -69,6 +69,6 @@
 </form>
 </div>
 </div></div></div></div></div></section></div>
-<jsp:include page="/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>
