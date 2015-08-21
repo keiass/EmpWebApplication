@@ -33,13 +33,13 @@
                         </div>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My</a>
-                        <ul class="dropdown-menu">
+                        <a href='<c:url value="/"/>' class="dropdown-toggle"><fmt:message key="menu_dashboard"/></a>
+                        <!-- ul class="dropdown-menu">
                             <li><a href='<c:url value="/"/>'><fmt:message key="menu_dashboard"/></a></li>
-                        </ul>
+                        </ul-->
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Board</a>
+                        <a href='<c:url value="/"/>' class="dropdown-toggle" data-toggle="dropdown">Board</a>
                         <ul class="dropdown-menu">
                             <li><a href="<c:url value='/board/Board.do?action=list'/>">Board List</a>
                             <li><a href="<c:url value='/board/Board.do?action=write'/>">Write New Article</a>
@@ -60,7 +60,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Emp Test</a>
+                        <a href='<c:url value="/emp/Emp?list"/>' class="dropdown-toggle">Emp Test</a>
                         <ul class="dropdown-menu">
                             <li><a href='<c:url value="/emp/Emp?list"/>'>EMP List</a></li>
         					<li role="separator" class="divider"></li>

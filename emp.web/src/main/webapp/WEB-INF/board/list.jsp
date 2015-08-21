@@ -1,13 +1,11 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="jk" uri="/WEB-INF/tlds/taglib.tld" %>
 <%@ taglib prefix="jk2" tagdir="/WEB-INF/tags" %>
 <html>
-
 <jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
-
 <body>
 <div class="container">
 <jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>

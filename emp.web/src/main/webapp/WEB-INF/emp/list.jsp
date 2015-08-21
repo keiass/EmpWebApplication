@@ -22,9 +22,9 @@
 	 <datatables:column cssClass="pc" cssCellClass="pc" title="SALARY" property="sal"/>
 	 <datatables:column cssClass="pc" cssCellClass="pc" title="COMMISSION" property="comm"/>
 	 <datatables:column title="DEPTNO" property="deptno" cssStyle="width: 100px;"/>
-	 <datatables:export type="pdf" cssClass="btn pc" cssStyle="height: 25px;" />
-	 <datatables:export type="xls" cssClass="btn pc" cssStyle="height: 25px;" />
-	 <datatables:export type="csv" cssClass="btn pc" cssStyle="height: 25px;" />
+	 <datatables:export type="pdf" cssClass="btn pc tab" cssStyle="height: 25px;" />
+	 <datatables:export type="xls" cssClass="btn pc tab" cssStyle="height: 25px;" />
+	 <datatables:export type="csv" cssClass="btn pc tab" cssStyle="height: 25px;" />
   </datatables:table>
 </div>
 </div>

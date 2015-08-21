@@ -20,6 +20,13 @@
     }
 }
 
+@media only screen and (min-width:431px) and (max-device-width:800px){
+    .tab {
+        display: none;  /* 테이블에서 collapse에 적용된다. */
+        visibility: hidden;
+    }
+}
+
 body div.content {
 	min-height: 400px;
 }
