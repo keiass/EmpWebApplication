@@ -20,11 +20,18 @@
     }
 }
 
-@media only screen and (min-width:431px) and (max-device-width:800px){
-    .tab {
-        display: none;  /* 테이블에서 collapse에 적용된다. */
+@media only screen and (max-width:800px) {
+    /* dandelion datatables 검색과 다운로드 버튼 안보이게 */
+    .dataTables_filter {
+    	display: none;
         visibility: hidden;
     }
+    
+    .dataTables_export {
+    	display: none;
+        visibility: hidden;
+    }
+    
 }
 
 body div.content {
