@@ -17,7 +17,8 @@ public class MemberDAO {
 	    Connection con = null;
 	    try{
 	        Context ctx = new InitialContext();
-	        ds = (DataSource)ctx.lookup("java:comp/env/jdbc/Oracle");
+	        ds = (DataSource)ctx.lookup("java:comp/env/jdbc/hsqlDB");
+//	        ds = (DataSource)ctx.lookup("java:comp/env/jdbc/Oracle");
 	        con = ds.getConnection();
 	    }catch(Exception e){
 	        e.printStackTrace();

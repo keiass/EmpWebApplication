@@ -1,4 +1,4 @@
-package kr.co.javaspecialist.emp.model.db;
+package kr.co.javaspecialist.common.db;
 
 import java.sql.Connection;
 

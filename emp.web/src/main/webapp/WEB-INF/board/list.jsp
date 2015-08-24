@@ -35,13 +35,13 @@
 	
 		<thead><tr><td>No</td><td>작성자</td><td>제목</td><td>조회수</td></tr></thead>
 	
-	<c:forEach var="board" items="${lists}">
+	<c:forEach var="board" items="${boardList}">
 	<tr>
 		<td>${board.seq}</td>
 		<td>${board.name}</td>
 		<td>
 		<jk2:reply replynum="${board.replynumber}" replystep="${board.replystep}"/>
-		<a href='<c:url value="/board/Board.do?action=view&bbsno=${board.bbsno}&page=${page}"/>'>
+		<a href='<c:url value="/board/Board?view&bbsno=${board.bbsno}&page=${page}"/>'>
 		${board.subject}</a>
 		</td>
 		<td>${board.readcount}</td>
@@ -49,7 +49,7 @@
 	</c:forEach>
 	</table>
 	<nav class=.center><ul class="pagination"><li><jk:paging total="totalPageCount" now="page"/></li></ul></nav>
-	<div align="right"><a href='<c:url value="/board/Board.do?action=write"/>'><button type="button" class="btn btn-danger">글쓰기</button></a></div>
+	<div align="right"><a href='<c:url value="/board/Board?write"/>'><button type="button" class="btn btn-danger">글쓰기</button></a></div>
 </div>
 </div></div></div></div>
 </section>

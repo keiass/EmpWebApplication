@@ -1,7 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true" isErrorPage="true"%>
-<%
-response.setStatus(200);
-%>
+<%@ page contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html> 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,11 +11,8 @@ response.setStatus(200);
 <div class="page">
 <jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
 <div class="content">
-<h3>${message}</h3>
-<%
-if(exception != null)
-out.println(exception.getMessage());
-%>
+<h1>실행 결과</h1>
+<h2>${message}</h2>
 </div>
 <jsp:include page="/WEB-INF/include/footer.jsp"/>
 </div>

@@ -7,7 +7,7 @@
 	<uri>http://www.abc.com/taglib</uri>
 	<tag>
 		<name>paging</name>
-		<tag-class>com.shinc.board.tags.PagingHandler</tag-class>
+		<tag-class>kr.co.javaspecialist.board.tags.PagingHandler</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>total</name>

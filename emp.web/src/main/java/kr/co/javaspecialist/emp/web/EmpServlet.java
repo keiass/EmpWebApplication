@@ -1,7 +1,6 @@
 package kr.co.javaspecialist.emp.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -13,14 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.javaspecialist.emp.model.EmpDAO;
+import kr.co.javaspecialist.emp.model.EmpVO;
+import kr.co.javaspecialist.emp.model.IEmpDAO;
+
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import kr.co.javaspecialist.emp.model.EmpDAO;
-import kr.co.javaspecialist.emp.model.EmpVO;
-import kr.co.javaspecialist.emp.model.IEmpDAO;
 
 public class EmpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

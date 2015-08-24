@@ -1,11 +1,11 @@
 INSERT INTO MEMBER (USERID, NAME, PASSWORD, PHONE, ADDRESS)
-VALUES ('wmy', '우미영', '1234', '010-1234-5678', '서울시 구로구');
+VALUES ('heojk', '허진경', '1234', '010-3402-7902', '서울시 구로구');
 
 INSERT INTO MEMBER (USERID, NAME, PASSWORD, PHONE, ADDRESS)
-VALUES ('ssginc', '신세계', 'a1234567890', '010-1234-5678', '서울시 구로구');
+VALUES ('user1', '홍길동', 'user1234', '010-1234-5678', '서울시 강남구');
 
 INSERT INTO BOARD (BBSNO, NAME, PASSWORD, EMAIL, SUBJECT, CONTENT, WRITEDATE, MASTERID, READCOUNT, REPLYNUMBER, REPLYSTEP)
-VALUES (1, '홍길동', '1234', 'hong@hong.dom', '자유게시판입니다.', '누구나 자유롭게 글을 작성할 수 있습니다', SYSDATE, 1, 0, 0, 0);
+VALUES (1, '홍길동', '1234', 'hong@hong.dom', '자유게시판입니다.', '누구나 자유롭게 글을 작성할 수 있습니다', '2015-08-19', 1, 0, 0, 0);
 
 COMMIT;
 

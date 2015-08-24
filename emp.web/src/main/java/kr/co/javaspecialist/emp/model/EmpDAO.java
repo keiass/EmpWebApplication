@@ -7,13 +7,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import kr.co.javaspecialist.common.db.Util;
 
 import org.apache.log4j.Logger;
 
-import kr.co.javaspecialist.emp.model.db.Util;
 
 public class EmpDAO implements IEmpDAO {
 	static final Logger logger = Logger.getLogger(EmpDAO.class);

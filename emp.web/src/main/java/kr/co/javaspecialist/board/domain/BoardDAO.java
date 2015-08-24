@@ -18,7 +18,8 @@ public class BoardDAO {
 		Connection con = null;
 		try{
 			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/Oracle");
+	        ds = (DataSource)ctx.lookup("java:comp/env/jdbc/hsqlDB");
+//			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/Oracle");
 			con = ds.getConnection();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -80,15 +81,15 @@ public class BoardDAO {
 	public Collection<BoardVO> selectArticleList(int page, int maxno) {
 		Connection con = null;
 		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
-		String sql = "select bbsno,name,email,subject,writedate,readcount,masterid,replynumber,replystep,rnum from ( "
-				+ " select bbsno,name,email,subject,writedate,readcount,masterid,replynumber,replystep, rownum rnum from ( "
-				+ " select bbsno,name,email,subject,writedate,readcount,masterid,replynumber,replystep from board "
-				//				+ " start with replyNumber=0 "
-				//				+ " connect by prior bbsno=replyNumber "
-				+ " order by masterid desc, replyNumber, replyStep)) "
-				+ " where rnum between ? and ? "; //Oracle
-		//		String sql = "select bbsno, name, subject, writedate, readcount, email, masterid, replynumber, replystep " +
-		//				"from board order by masterid desc, replynumber, replystep limit 10 offset ?"; //PostgreSQL
+//		String sql = "select bbsno,name,email,subject,writedate,readcount,masterid,replynumber,replystep,rnum from ( "
+//				+ " select bbsno,name,email,subject,writedate,readcount,masterid,replynumber,replystep, rownum rnum from ( "
+//				+ " select bbsno,name,email,subject,writedate,readcount,masterid,replynumber,replystep from board "
+//				//				+ " start with replyNumber=0 "
+//				//				+ " connect by prior bbsno=replyNumber "
+//				+ " order by masterid desc, replyNumber, replyStep)) "
+//				+ " where rnum between ? and ? "; //Oracle
+				String sql = "select bbsno, name, subject, writedate, readcount, email, masterid, replynumber, replystep " +
+						"from board order by masterid desc, replynumber, replystep limit 10 offset ?"; //PostgreSQL
 		int start = (page-1) * 10 +1;
 		int end = start + maxno-1;
 		try {
@@ -120,6 +121,43 @@ public class BoardDAO {
 		return list;
 	}//end selectArticleList
 
+	/**
+	 * 게시글 목록을 조회하는 메서드<br>
+	 * 한꺼번에 100개 게시글을 가져온다. Dandelion datatables를 사용하기 위해서 만들었다.
+	 * @return list Board 정보가 저장되어 있는 ArrayList객체
+	 */
+	public Collection<BoardVO> selectArticleList() {
+		Connection con = null;
+		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+		String sql = "select bbsno, name, subject, writedate, readcount, email, masterid, replynumber, replystep " +
+ 					 "from board order by masterid desc, replynumber, replystep limit 100 offset 1";
+		try {
+			con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setBbsno(rs.getInt("bbsno"));
+				board.setName(rs.getString("name"));
+				board.setEmail(rs.getString("email"));
+				board.setSubject(rs.getString("subject"));
+				board.setWritedate(rs.getDate("writedate"));
+				board.setReadcount(rs.getInt("readcount"));
+				board.setEmail(rs.getString("email"));
+				board.setMasterid(rs.getInt("masterid"));
+				board.setReplynumber(rs.getInt("replynumber"));
+				board.setReplystep(rs.getInt("replystep"));
+				list.add(board);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("BoardDAO.selectArticleList : " + e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
+		return list;
+	}//end selectArticleList
+	
 	/**
 	 * 게시글 하나를 조회함
 	 * @param bbsno 게시글번호(목록의 번호 아님)

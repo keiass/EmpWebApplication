@@ -41,8 +41,8 @@
                     <li class="dropdown">
                         <a href='<c:url value="/"/>' class="dropdown-toggle" data-toggle="dropdown">Board</a>
                         <ul class="dropdown-menu">
-                            <li><a href="<c:url value='/board/Board.do?action=list'/>">Board List</a>
-                            <li><a href="<c:url value='/board/Board.do?action=write'/>">Write New Article</a>
+                            <li><a href="<c:url value='/board/Board'/>">Board List</a>
+                            <li><a href="<c:url value='/board/Board?write'/>">Write New Article</a>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -64,7 +64,7 @@
                         <ul class="dropdown-menu">
                             <li><a href='<c:url value="/emp/Emp?list"/>'>EMP List</a></li>
         					<li role="separator" class="divider"></li>
-	    					<li><a href='<c:url value="/emp/Emp?insert"/>'>EMP List</a></li>
+	    					<li><a href='<c:url value="/emp/Emp?insert"/>'>New Employment</a></li>
                         </ul>
                     </li>
                     <li class="dropdown dropdown-aux animate-click" data-animate-in="animated bounceInUp" data-animate-out="animated fadeOutDown" style="z-index:500;">
@@ -86,7 +86,7 @@
                     </li>
                    <li><div>
                    <c:if test="${empty userid}">
-                   <br><a href="<c:url value='/member/loginform.jsp'/>" class="btn btn-danger">Sign in</a>
+                   <br><a href="<c:url value='/view?member/loginform'/>" class="btn btn-danger">Sign in</a>
                    </c:if>
                    <c:if test="${!empty userid}">
                    <br><a href="<c:url value='/member/Login.do'/>" class="btn btn-danger">Sign Out</a>

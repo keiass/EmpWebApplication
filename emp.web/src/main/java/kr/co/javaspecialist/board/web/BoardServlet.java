@@ -2,6 +2,7 @@ package kr.co.javaspecialist.board.web;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -14,20 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.javaspecialist.board.domain.BoardDAO;
 import kr.co.javaspecialist.board.domain.BoardVO;
 
-/**
- * Servlet implementation class BoardServlet
- */
-@WebServlet("/board/Board.do")
+@WebServlet("/board/Board")
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public BoardServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
 
 	BoardDAO dao;
 	String contextPath;
@@ -38,94 +30,91 @@ public class BoardServlet extends HttpServlet {
 		if(contextPath == null) contextPath = "";
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String action = request.getParameter("action");
-		String url = ""; //
-//		url = "/index.jsp?url=";
-		String pageStr = request.getParameter("page");
-		int page = 1;
-		if(pageStr != null && !pageStr.equals("")) {
-			page = Integer.parseInt(pageStr);
-		}
-		request.setAttribute("page", page);
-		if("write".equals(action)) {
-			url = url + "/board/write.jsp";
-			request.setAttribute("next", "write_do");
-		} else if("reply".equals(action)) {
-			String bbsnoStr = request.getParameter("bbsno");
-			int bbsno = Integer.parseInt(bbsnoStr);
-			BoardVO board = dao.selectArticle(bbsno);
-			board.setName("");
-			board.setEmail("");
-			board.setSubject("[Re]"+board.getSubject());
-			board.setContent("\n\n\n----------\n" + board.getContent());
-			request.setAttribute("board", board);
-			request.setAttribute("next", "reply_do");
-			url = url + "/board/write.jsp";
-		} else if("update".equals(action)) {
-			String bbsnoStr = request.getParameter("bbsno");
-			int bbsno = 0;
-			if(bbsnoStr != null) {
-				bbsno = Integer.parseInt(bbsnoStr);
-				BoardVO board = dao.selectArticle(bbsno);
-				request.setAttribute("board", board);
-				request.setAttribute("next", "update_do");
-				url = url + "/board/write.jsp";
-			}else {
-				request.setAttribute("message", "게시글번호가 없습니다.");
-				url = url + "/board/error.jsp";
-			}
-		} else if("delete".equals(action)) {
-			String bbsno = request.getParameter("bbsno");
-			String replynumber = request.getParameter("replynumber");
-			request.setAttribute("bbsno", bbsno);
-			request.setAttribute("replynumber", replynumber);
-			request.setAttribute("next", "delete_do");
-			url = url + "/board/delete.jsp";
-		} else if("list".equals(action)) {
-			Collection<BoardVO> lists = dao.selectArticleList(page, 10);
-			request.setAttribute("lists", lists);
-			url = url + "/board/list.jsp";
+		Enumeration<String> paramNames= request.getParameterNames();
+		String path = "notfound";
+		if(paramNames.hasMoreElements()) {
+			path = paramNames.nextElement();
 			
-			// paging start
-			int bbsCount = dao.selectTotalArticleCount();
-			int totalPage = 0;
-			if(bbsCount > 0) {
-				totalPage= bbsCount/10;
+			String pageStr = request.getParameter("page");
+			int page = 1;
+			if(pageStr != null && !pageStr.equals("")) {
+				page = Integer.parseInt(pageStr);
 			}
-			if( (bbsCount % 10) != 0 || totalPage==0 ) {
-				totalPage = totalPage+1;
-			}
-			request.setAttribute("totalPageCount", totalPage);
 			request.setAttribute("page", page);
-		} else if("view".equals(action)) {
-			String bbsnoStr = request.getParameter("bbsno");
-			int bbsno = 1;
-			if(bbsnoStr != null) {
-				bbsno = Integer.parseInt(bbsnoStr);
+			
+			if(path.equals("write")) {
+				//nothing
+			}else if(path.equals("reply")) {
+				int bbsno = Integer.parseInt(request.getParameter("reply"));
+				BoardVO board = dao.selectArticle(bbsno);
+				board.setName("");
+				board.setEmail("");
+				board.setSubject("[Re]"+board.getSubject());
+				board.setContent("\n\n\n----------\n" + board.getContent());
+				request.setAttribute("board", board);
+				request.setAttribute("next", "reply");
+			}else if(path.equals("update")) {
+				String bbsnoStr = request.getParameter("bbsno");
+				int bbsno = 0;
+				if(bbsnoStr != null) {
+					bbsno = Integer.parseInt(bbsnoStr);
+					BoardVO board = dao.selectArticle(bbsno);
+					request.setAttribute("board", board);
+					request.setAttribute("next", "update");
+				}else {
+					request.setAttribute("message", "게시글번호가 없습니다.");
+					path = "error";
+				}
+			} else if("delete".equals(path)) {
+				String bbsno = request.getParameter("bbsno");
+				String replynumber = request.getParameter("replynumber");
+				request.setAttribute("bbsno", bbsno);
+				request.setAttribute("replynumber", replynumber);
+				request.setAttribute("next", "delete_do");
+			} else if("list".equals(path)) {
+				Collection<BoardVO> boardList = dao.selectArticleList(page, 10);
+				request.setAttribute("boardList", boardList);
+				
+				// paging start
+				int bbsCount = dao.selectTotalArticleCount();
+				int totalPage = 0;
+				if(bbsCount > 0) {
+					totalPage= bbsCount/10;
+				}
+				if( (bbsCount % 10) != 0 || totalPage==0 ) {
+					totalPage = totalPage+1;
+				}
+				request.setAttribute("totalPageCount", totalPage);
+				request.setAttribute("page", page);
+			} else if("view".equals(path)) {
+				String bbsnoStr = request.getParameter("bbsno");
+				int bbsno = 1;
+				if(bbsnoStr != null) {
+					bbsno = Integer.parseInt(bbsnoStr);
+				}
+				dao.updateReadCount(bbsno);
+				BoardVO board = dao.selectArticle(bbsno);
+				if(board.getContent() != null) {
+					board.setContent(board.getContent().replaceAll("\n", "<br>"));
+				}
+				request.setAttribute("board", board);
+			} else {
+				request.setAttribute("message", "잘못된 명령.");
+				path = "error";
 			}
-			dao.updateReadCount(bbsno);
-			BoardVO board = dao.selectArticle(bbsno);
-			if(board.getContent() != null) {
-				board.setContent(board.getContent().replaceAll("\n", "<br>"));
-			}
-			request.setAttribute("board", board);
-			url = url + "/board/view.jsp";
-		} else {
-			request.setAttribute("message", "잘못된 명령.");
-			url = url + "/board/error.jsp";
+		}else {
+			Collection<BoardVO> boardList = dao.selectArticleList();
+			request.setAttribute("boardList", boardList);
+			path = "list"; 
 		}
-		RequestDispatcher disp = request.getRequestDispatcher(url);
+		
+		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/board/" + path + ".jsp");
 		disp.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String action = request.getParameter("action");
@@ -137,7 +126,7 @@ public class BoardServlet extends HttpServlet {
 			page = Integer.parseInt(pageStr);
 		}
 		request.setAttribute("page", page);
-		if("write_do".equals(action)) {
+		if("write".equals(action)) {
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String subject = request.getParameter("subject");
@@ -153,7 +142,7 @@ public class BoardServlet extends HttpServlet {
 			url = contextPath + "/board/Board.do?action=list";
 			response.sendRedirect(url);
 			return;
-		} else if("reply_do".equals(action)) {
+		} else if("reply".equals(action)) {
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String subject = request.getParameter("subject");
@@ -177,7 +166,7 @@ public class BoardServlet extends HttpServlet {
 			
 			response.sendRedirect(contextPath + "/board/Board.do?action=list&page="+page);
 			return;
-		} else if("update_do".equals(action)) {
+		} else if("update".equals(action)) {
 			String password = request.getParameter("password");
 			String bbsnoStr = request.getParameter("bbsno");
 			int bbsno = Integer.parseInt(bbsnoStr);
@@ -197,7 +186,7 @@ public class BoardServlet extends HttpServlet {
 				request.setAttribute("message", "비밀번호가 다릅니다. 수정되지 않았습니다.");
 				url = url + "/board/error.jsp";
 			}
-		} else if("delete_do".equals(action)) {
+		} else if("delete".equals(action)) {
 			String bbsnoStr = request.getParameter("bbsno");
 			int bbsno = Integer.parseInt(bbsnoStr);
 			String replynumberStr = request.getParameter("replynumber");

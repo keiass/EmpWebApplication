@@ -8,7 +8,6 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
 
-import kr.co.javaspecialist.emp.model.EmpDAO;
 import scriptella.execution.EtlExecutor;
 import scriptella.execution.EtlExecutorException;
 

@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.co.javaspecialist.emp.model.db.Util;
+import kr.co.javaspecialist.common.db.Util;
+
 
 public class DeptDAO implements IDeptDAO {
 

@@ -1,9 +1,6 @@
 package kr.co.javaspecialist.member.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,20 +12,12 @@ import javax.servlet.http.HttpSession;
 import kr.co.javaspecialist.member.domain.MemberDAO;
 import kr.co.javaspecialist.member.domain.MemberVO;
 
-/**
- * Servlet implementation class MemberServlet
- */
 @WebServlet("/member/Member.do")
 public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	MemberDAO dao = new MemberDAO();
 	
-    public MemberServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 //		String userid = request.getParameter("userid");
