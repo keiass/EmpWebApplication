@@ -1,4 +1,4 @@
-package com.shinc.member.domain;
+package kr.co.javaspecialist.member.domain;
 
 public class MemberVO {
     private String userid;

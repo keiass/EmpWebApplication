@@ -1,4 +1,4 @@
-package com.shinc.manage.domain;
+package kr.co.javaspecialist.manage.domain;
 
 import java.sql.Date;
 

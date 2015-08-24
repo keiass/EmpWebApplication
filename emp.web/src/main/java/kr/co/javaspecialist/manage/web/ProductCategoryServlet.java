@@ -1,4 +1,4 @@
-package com.shinc.manage.web;
+package kr.co.javaspecialist.manage.web;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shinc.manage.domain.ProductVO;
-import com.shinc.manage.service.IManageService;
-import com.shinc.manage.service.ManageService;
+import kr.co.javaspecialist.manage.domain.ProductVO;
+import kr.co.javaspecialist.manage.service.IManageService;
+import kr.co.javaspecialist.manage.service.ManageService;
 
 @WebServlet("/shop/Category.do")
 public class ProductCategoryServlet extends HttpServlet {

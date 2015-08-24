@@ -1,10 +1,10 @@
-package com.shinc.manage.service;
+package kr.co.javaspecialist.manage.service;
 
 import java.util.List;
 
-import com.shinc.manage.domain.ProductVO;
-import com.shinc.manage.repository.IProductDAO;
-import com.shinc.manage.repository.ProductDAO;
+import kr.co.javaspecialist.manage.domain.ProductVO;
+import kr.co.javaspecialist.manage.repository.IProductDAO;
+import kr.co.javaspecialist.manage.repository.ProductDAO;
 
 public class ManageService implements IManageService {
 

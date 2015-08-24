@@ -1,4 +1,4 @@
-package com.shinc.manage.repository;
+package kr.co.javaspecialist.manage.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-import com.shinc.manage.domain.ProductVO;
+import kr.co.javaspecialist.manage.domain.ProductVO;
 
 public class ProductDAO implements IProductDAO { 
 	

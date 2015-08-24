@@ -1,4 +1,4 @@
-package com.shinc.member.web;
+package kr.co.javaspecialist.member.web;
 
 import java.io.IOException;
 
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.shinc.manage.service.IManageService;
-import com.shinc.manage.service.ManageService;
-import com.shinc.member.domain.MemberDAO;
-import com.shinc.member.domain.MemberVO;
+import kr.co.javaspecialist.manage.service.IManageService;
+import kr.co.javaspecialist.manage.service.ManageService;
+import kr.co.javaspecialist.member.domain.MemberDAO;
+import kr.co.javaspecialist.member.domain.MemberVO;
 
 /**
  * Servlet implementation class LoginServlet

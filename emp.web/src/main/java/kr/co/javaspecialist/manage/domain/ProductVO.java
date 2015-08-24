@@ -1,4 +1,4 @@
-package com.shinc.manage.domain;
+package kr.co.javaspecialist.manage.domain;
 
 
 public class ProductVO { 

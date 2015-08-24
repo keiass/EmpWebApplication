@@ -1,4 +1,4 @@
-package com.shinc.board.tags;
+package kr.co.javaspecialist.board.tags;
 
 import java.io.IOException;
 import javax.servlet.jsp.JspException;

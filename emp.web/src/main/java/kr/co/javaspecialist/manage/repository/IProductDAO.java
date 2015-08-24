@@ -1,15 +1,14 @@
-package com.shinc.manage.service;
+package kr.co.javaspecialist.manage.repository;
 
 import java.util.List;
 
-import com.shinc.manage.domain.ProductVO;
+import kr.co.javaspecialist.manage.domain.ProductVO;
 
-public interface IManageService {
-	
+public interface IProductDAO {
 	List<ProductVO> getProductInfoByKeyword(String keyword);
-	ProductVO getProductInfoByBarcode(String barcode);
 	List<ProductVO> getProductInfoByLocation(String location);
 	List<ProductVO> getProductInfoByDeptname(String deptname);
+	ProductVO getProductInfoByBarcode(String barcode);
 	List<ProductVO> getProductInfoByName(String name);
 	List<ProductVO> getProductInfoByID(String id);
 	List<ProductVO> getProductInfoByDepartmentAndCategory(String dept, String category);

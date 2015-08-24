@@ -1,4 +1,4 @@
-package com.shinc.member.domain;
+package kr.co.javaspecialist.member.domain;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

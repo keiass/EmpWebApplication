@@ -9,6 +9,8 @@
 	<script>
 		<include href="emp_dept_hsqldb_ddl.sql" />
 		<include href="emp_dept_dml.sql" />
+		<include href="produce_member_basket_board_ddl.sql" />
+		<include href="produce_member_basket_board_dml.sql" />
 		-- And/or directly insert SQL statements here
 	</script>
 </etl>  
