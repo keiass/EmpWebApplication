@@ -1,11 +1,8 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html> 
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
 <jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
-
 <body>
 <div class="container">
 <jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
@@ -18,7 +15,7 @@
                 <div class="col-md-6">
                     <ol class="breadcrumb">
                         <li>Board</li>
-                        <li class="active">Write</li>
+                        <li class="active">Update</li>
                     </ol>
                 </div>
             </div>
@@ -32,7 +29,7 @@
 						<div class="container">
 <div class="box-content">
 <div class="content">
-<form action='<c:url value="/board/Board?reply"/>' method="post" class="form-inline">
+<form action='<c:url value="/board/Board?update"/>' method="post" class="form-inline">
 <table class="table">
 <tr>
 	<td width="200px">작성자이름</td>
@@ -56,7 +53,6 @@
 </tr>
 <tr>
 	<td colspan="2">
-	<input type="hidden" name="action" value="${next}">
 	<input type="hidden" name="bbsno" value="${board.bbsno}">
 	<input type="hidden" name="masterid" value="${board.masterid}">
 	<input type="hidden" name="replynumber" value="${board.replynumber}">

@@ -60,7 +60,7 @@ public class BoardServlet extends HttpServlet {
 				request.setAttribute("board", board);
 				request.setAttribute("next", "reply");
 			}else if(path.equals("update")) {
-				String bbsnoStr = request.getParameter("bbsno");
+				String bbsnoStr = request.getParameter("update");
 				int bbsno = 0;
 				if(bbsnoStr != null) {
 					bbsno = Integer.parseInt(bbsnoStr);
@@ -72,7 +72,7 @@ public class BoardServlet extends HttpServlet {
 					path = "error";
 				}
 			} else if("delete".equals(path)) {
-				String bbsno = request.getParameter("bbsno");
+				String bbsno = request.getParameter("delete");
 				String replynumber = request.getParameter("replynumber");
 				request.setAttribute("bbsno", bbsno);
 				request.setAttribute("replynumber", replynumber);
@@ -94,7 +94,7 @@ public class BoardServlet extends HttpServlet {
 				request.setAttribute("totalPageCount", totalPage);
 				request.setAttribute("page", page);
 			} else if("view".equals(path)) {
-				String bbsnoStr = request.getParameter("bbsno");
+				String bbsnoStr = request.getParameter("view");
 				int bbsno = 1;
 				if(bbsnoStr != null) {
 					bbsno = Integer.parseInt(bbsnoStr);
@@ -188,14 +188,14 @@ public class BoardServlet extends HttpServlet {
 					board.setSubject(request.getParameter("subject"));
 					board.setContent(request.getParameter("content"));
 					dao.updateArticle(board);
-					String url = contextPath + "/board/Board.do?action=view&bbsno="+bbsno + "&page="+page;
+					String url = contextPath + "/board/Board?view="+bbsno + "&page="+page;
 					response.sendRedirect(response.encodeRedirectURL(url));
 					return;
 				}else {
 					request.setAttribute("message", "비밀번호가 다릅니다. 수정되지 않았습니다.");
 				}
 			} else if("delete".equals(path)) {
-				String bbsnoStr = request.getParameter("bbsno");
+				String bbsnoStr = request.getParameter("delete");
 				int bbsno = Integer.parseInt(bbsnoStr);
 				String replynumberStr = request.getParameter("replynumber");
 				int replynumber =0 ;

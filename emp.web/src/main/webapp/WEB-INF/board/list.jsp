@@ -37,11 +37,11 @@
 	
 	<c:forEach var="board" items="${boardList}">
 	<tr>
-		<td>${board.seq}</td>
+		<td>${board.bbsno}</td>
 		<td>${board.name}</td>
 		<td>
 		<jk2:reply replynum="${board.replynumber}" replystep="${board.replystep}"/>
-		<a href='<c:url value="/board/Board?view&bbsno=${board.bbsno}&page=${page}"/>'>
+		<a href='<c:url value="/board/Board?view=${board.bbsno}&&page=${page}"/>'>
 		${board.subject}</a>
 		</td>
 		<td>${board.readcount}</td>
