@@ -8,9 +8,24 @@
 
 <body>
 <div class="container">
-	<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+    <div class="pg-opt">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2><a href="<c:url value='#'/>">Board Contents</a></h2>
+                </div>
+                <div class="col-md-6">
+                    <ol class="breadcrumb">
+                        <li>Board</li>
+                        <li class="active"><a href="<c:url value='#'/>">Contents</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 	<div class="content">
-	<h3>게시글 내용입니다.</h3>
+
 	<table class="table">
 	<tr>
 		<td width="150">작성자 이름</td>
@@ -26,10 +41,10 @@
 	</tr>
 	<tr>
 		<td colspan=2 align="right">
-		<a href='<c:url value="/board/Board.do?action=list&page=${page}"/>'><button type="button" class="btn btn-danger">목록</button></a>
-		<a href='<c:url value="/board/Board.do?action=reply&page=${page}&bbsno=${board.bbsno}"/>'><button type="button" class="btn btn-danger">댓글</button></a>
-		<a href='<c:url value="/board/Board.do?action=update&page=${page}&bbsno=${board.bbsno}"/>'><button type="button" class="btn btn-danger">수정</button></a>
-		<a href='<c:url value="/board/Board.do?action=delete&page=${page}&bbsno=${board.bbsno}&replynumber=${board.replynumber}"/>'><button type="button" class="btn btn-danger">삭제</button></a>
+		<a href='<c:url value="/board/Board?list&page=${page}"/>'><button type="button" class="btn btn-danger">목록</button></a>
+		<a href='<c:url value="/board/Board?reply=${board.bbsno}&page=${page}"/>'><button type="button" class="btn btn-danger">댓글</button></a>
+		<a href='<c:url value="/board/Board?update=${board.bbsno}&page=${page}"/>'><button type="button" class="btn btn-danger">수정</button></a>
+		<a href='<c:url value="/board/Board?delete=${board.bbsno}&page=${page}&replynumber=${board.replynumber}"/>'><button type="button" class="btn btn-danger">삭제</button></a>
 		</td>
 	</tr>
 	</table>

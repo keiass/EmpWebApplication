@@ -12,13 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import kr.co.javaspecialist.board.domain.BoardDAO;
 import kr.co.javaspecialist.board.domain.BoardVO;
+import kr.co.javaspecialist.emp.web.EmpServlet;
 
 @WebServlet("/board/Board")
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	static final Logger logger = Logger.getLogger(EmpServlet.class);
 
 
 	BoardDAO dao;
@@ -75,8 +79,9 @@ public class BoardServlet extends HttpServlet {
 				request.setAttribute("next", "delete_do");
 			} else if("list".equals(path)) {
 				Collection<BoardVO> boardList = dao.selectArticleList(page, 10);
+				logger.info(boardList);
 				request.setAttribute("boardList", boardList);
-				
+
 				// paging start
 				int bbsCount = dao.selectTotalArticleCount();
 				int totalPage = 0;
@@ -106,6 +111,7 @@ public class BoardServlet extends HttpServlet {
 			}
 		}else {
 			Collection<BoardVO> boardList = dao.selectArticleList();
+			logger.info(boardList);
 			request.setAttribute("boardList", boardList);
 			path = "list"; 
 		}
@@ -117,99 +123,106 @@ public class BoardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String action = request.getParameter("action");
-		String url = ""; //
-//		url = "/index.jsp?url=";
+		Enumeration<String> paramNames= request.getParameterNames();
+		String path = "notfound";
+		
 		String pageStr = request.getParameter("page");
 		int page = 1;
 		if(pageStr != null && !pageStr.equals("")) {
 			page = Integer.parseInt(pageStr);
 		}
 		request.setAttribute("page", page);
-		if("write".equals(action)) {
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String subject = request.getParameter("subject");
-			String content = request.getParameter("content");
-			String password = request.getParameter("password");
-			BoardVO board = new BoardVO();
-			board.setName(name);
-			board.setEmail(email);
-			board.setSubject(subject);
-			board.setContent(content);
-			board.setPassword(password);
-			dao.insertArticle(board);
-			url = contextPath + "/board/Board.do?action=list";
-			response.sendRedirect(url);
-			return;
-		} else if("reply".equals(action)) {
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String subject = request.getParameter("subject");
-			String content = request.getParameter("content");
-			String password = request.getParameter("password");
-			int masterid = Integer.parseInt(request.getParameter("masterid"));
-			int replynumber = Integer.parseInt(request.getParameter("replynumber"));
-			int replystep = Integer.parseInt(request.getParameter("replystep"));
-			
-			BoardVO board = new BoardVO();
-			board.setName(name);
-			board.setEmail(email);
-			board.setSubject(subject);
-			board.setContent(content);
-			board.setPassword(password);
-			board.setMasterid(masterid);
-			board.setReplynumber(replynumber);
-			board.setReplystep(replystep);
-			
-			dao.replyArticle(board);
-			
-			response.sendRedirect(contextPath + "/board/Board.do?action=list&page="+page);
-			return;
-		} else if("update".equals(action)) {
-			String password = request.getParameter("password");
-			String bbsnoStr = request.getParameter("bbsno");
-			int bbsno = Integer.parseInt(bbsnoStr);
-			String dbpw = dao.getPassword(bbsno);
-			if(dbpw.equals(password)) {
+		
+		if(paramNames.hasMoreElements()) {
+			path = paramNames.nextElement();
+			if("write".equals(path)) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String subject = request.getParameter("subject");
+				String content = request.getParameter("content");
+				String password = request.getParameter("password");
 				BoardVO board = new BoardVO();
-				board.setBbsno(bbsno);
-				board.setName(request.getParameter("name"));
-				board.setEmail(request.getParameter("email"));
-				board.setSubject(request.getParameter("subject"));
-				board.setContent(request.getParameter("content"));
-				dao.updateArticle(board);
-				url = contextPath + "/board/Board.do?action=view&bbsno="+bbsno + "&page="+page;
-				response.sendRedirect(url);
+				board.setName(name);
+				board.setEmail(email);
+				board.setSubject(subject);
+				board.setContent(content);
+				board.setPassword(password);
+				dao.insertArticle(board);
+				String url = contextPath + "/board/Board?list";
+				response.sendRedirect(response.encodeRedirectURL(url));
 				return;
-			}else {
-				request.setAttribute("message", "비밀번호가 다릅니다. 수정되지 않았습니다.");
-				url = url + "/board/error.jsp";
-			}
-		} else if("delete".equals(action)) {
-			String bbsnoStr = request.getParameter("bbsno");
-			int bbsno = Integer.parseInt(bbsnoStr);
-			String replynumberStr = request.getParameter("replynumber");
-			int replynumber =0 ;
-			if(replynumberStr != null && !replynumberStr.equals("")) {
-				replynumber = Integer.parseInt(replynumberStr);
-			}
-			String password = request.getParameter("password");
-			String dbpw = dao.getPassword(bbsno);
-			if(dbpw.equals(password)) {
-				dao.deleteArticle(bbsno, replynumber);
-				url = contextPath + "/board/Board.do?action=list" + "&page="+page;
-				response.sendRedirect(url);
+			} else if("reply".equals(path)) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String subject = request.getParameter("subject");
+				String content = request.getParameter("content");
+				String password = request.getParameter("password");
+				int masterid = Integer.parseInt(request.getParameter("masterid"));
+				int replynumber = Integer.parseInt(request.getParameter("replynumber"));
+				int replystep = Integer.parseInt(request.getParameter("replystep"));
+				
+				BoardVO board = new BoardVO();
+				board.setName(name);
+				board.setEmail(email);
+				board.setSubject(subject);
+				board.setContent(content);
+				board.setPassword(password);
+				board.setMasterid(masterid);
+				board.setReplynumber(replynumber);
+				board.setReplystep(replystep);
+				
+				dao.replyArticle(board);
+				
+				response.sendRedirect(response.encodeRedirectURL(contextPath + "/board/Board?list&page="+page));
 				return;
-			}else {
-				request.setAttribute("message", "비밀번호가 다릅니다. 삭제되지 않았습니다.");
-				url = url + "/board/error.jsp";
+			} else if("update".equals(path)) {
+				String password = request.getParameter("password");
+				String bbsnoStr = request.getParameter("bbsno");
+				int bbsno = Integer.parseInt(bbsnoStr);
+				String dbpw = dao.getPassword(bbsno);
+				if(dbpw.equals(password)) {
+					BoardVO board = new BoardVO();
+					board.setBbsno(bbsno);
+					board.setName(request.getParameter("name"));
+					board.setEmail(request.getParameter("email"));
+					board.setSubject(request.getParameter("subject"));
+					board.setContent(request.getParameter("content"));
+					dao.updateArticle(board);
+					String url = contextPath + "/board/Board.do?action=view&bbsno="+bbsno + "&page="+page;
+					response.sendRedirect(response.encodeRedirectURL(url));
+					return;
+				}else {
+					request.setAttribute("message", "비밀번호가 다릅니다. 수정되지 않았습니다.");
+				}
+			} else if("delete".equals(path)) {
+				String bbsnoStr = request.getParameter("bbsno");
+				int bbsno = Integer.parseInt(bbsnoStr);
+				String replynumberStr = request.getParameter("replynumber");
+				int replynumber =0 ;
+				if(replynumberStr != null && !replynumberStr.equals("")) {
+					replynumber = Integer.parseInt(replynumberStr);
+				}
+				String password = request.getParameter("password");
+				String dbpw = dao.getPassword(bbsno);
+				if(dbpw.equals(password)) {
+					dao.deleteArticle(bbsno, replynumber);
+					String url = contextPath + "/board/Board?list" + "&page="+page;
+					response.sendRedirect(response.encodeRedirectURL(url));
+					return;
+				}else {
+					request.setAttribute("message", "비밀번호가 다릅니다. 삭제되지 않았습니다.");
+					path = "error";
+				}
+			} else {
+				request.setAttribute("message", "잘못된 명령입니다.");
+				path = "error";
 			}
-		} else {
-			request.setAttribute("message", "잘못된 명령.");
-			url = url + "/board/error.jsp";
+		}else {
+			request.setAttribute("message", "명령어가 존재하지 않습니다.");
+			path = "error";
 		}
-		RequestDispatcher disp = request.getRequestDispatcher(url);
+		
+		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/board/" + path + ".jsp");
 		disp.forward(request, response);
 	}
 

@@ -13,12 +13,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2><a href="<c:url value='/board/Board.do?action=list'/>">Board</a></h2>
+                    <h2><a href="<c:url value='/board/Board?list'/>">Board</a></h2>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
                         <li>Board</li>
-                        <li class="active"><a href="<c:url value='/board/Board.do?action=list'/>">List</a></li>
+                        <li class="active"><a href="<c:url value='/board/Board?list'/>">List</a></li>
                     </ol>
                 </div>
             </div>

@@ -41,7 +41,8 @@
                     <li class="dropdown">
                         <a href='<c:url value="/"/>' class="dropdown-toggle" data-toggle="dropdown">Board</a>
                         <ul class="dropdown-menu">
-                            <li><a href="<c:url value='/board/Board'/>">Board List</a>
+                        	<li><a href="<c:url value='/board/Board'/>">Board Datatables List</a>
+                            <li><a href="<c:url value='/board/Board?list'/>">Board List</a>
                             <li><a href="<c:url value='/board/Board?write'/>">Write New Article</a>
                         </ul>
                     </li>
@@ -60,7 +61,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href='<c:url value="/emp/Emp?list"/>' class="dropdown-toggle">Emp Test</a>
+                        <a href='#' class="dropdown-toggle" data-toggle="dropdown">Emp Test</a>
                         <ul class="dropdown-menu">
                             <li><a href='<c:url value="/emp/Emp?list"/>'>EMP List</a></li>
         					<li role="separator" class="divider"></li>

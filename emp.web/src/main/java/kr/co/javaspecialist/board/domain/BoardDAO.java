@@ -95,9 +95,9 @@ public class BoardDAO {
 		try {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			//			pstmt.setInt(1, (start-1)*10);//PostgreSQL 일 경우
-			pstmt.setInt(1, start); //Oracle 일 경우
-			pstmt.setInt(2, end); //Oracle 일 경우
+			pstmt.setInt(1, (start-1)*10);//PostgreSQL 일 경우
+//			pstmt.setInt(1, start); //Oracle 일 경우
+//			pstmt.setInt(2, end); //Oracle 일 경우
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				BoardVO board = new BoardVO();
@@ -109,7 +109,7 @@ public class BoardDAO {
 				board.setReadcount(rs.getInt("readcount"));
 				board.setReplynumber(rs.getInt("replynumber"));
 				board.setReplystep(rs.getInt("replystep"));
-				board.setSeq(rs.getInt("rnum"));
+//				board.setSeq(rs.getInt("rnum"));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -130,7 +130,7 @@ public class BoardDAO {
 		Connection con = null;
 		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
 		String sql = "select bbsno, name, subject, writedate, readcount, email, masterid, replynumber, replystep " +
- 					 "from board order by masterid desc, replynumber, replystep limit 100 offset 1";
+ 					 "from board order by masterid desc, replynumber, replystep limit 100 offset 0";
 		try {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);

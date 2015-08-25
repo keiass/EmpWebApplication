@@ -10,8 +10,8 @@
 <div class="container">
 <jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
 <div class="content">
-	<h3>삭제할 비밀번호를 입력하세요</h3>
-	<form action='<c:url value="/board/Board.do"/>' class="form-inline" method="post">
+	<h3>글 비밀번호를 입력하세요</h3>
+	<form action='<c:url value="/board/Board"/>' class="form-inline" method="post">
 	<input type="hidden" name="action" value="${next}">
 	<input type="hidden" name="bbsno" value="${bbsno}">
 	<input type="hidden" name="replynumber" value="${replynumber}">

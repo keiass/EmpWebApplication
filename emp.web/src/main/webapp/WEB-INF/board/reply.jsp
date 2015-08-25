@@ -1,8 +1,11 @@
-<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
+<%@ page contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html> 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+
 <jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
+
 <body>
 <div class="container">
 <jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
@@ -29,7 +32,7 @@
 						<div class="container">
 <div class="box-content">
 <div class="content">
-<form action='<c:url value="/board/Board?write"/>' method="post" class="form-inline">
+<form action='<c:url value="/board/Board"/>' method="post" class="form-inline">
 <table class="table">
 <tr>
 	<td width="200px">작성자이름</td>
