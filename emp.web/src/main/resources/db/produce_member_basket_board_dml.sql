@@ -6,6 +6,10 @@ VALUES ('user1', '홍길동', 'user1234', '010-1234-5678', '서울시 강남구'
 
 INSERT INTO BOARD (BBSNO, NAME, PASSWORD, EMAIL, SUBJECT, CONTENT, WRITEDATE, MASTERID, READCOUNT, REPLYNUMBER, REPLYSTEP)
 VALUES (1, '홍길동', '1234', 'hong@hong.dom', '자유게시판입니다.', '누구나 자유롭게 글을 작성할 수 있습니다', '2015-08-19', 1, 0, 0, 0);
+INSERT INTO BOARD (BBSNO, NAME, PASSWORD, EMAIL, SUBJECT, CONTENT, WRITEDATE, MASTERID, READCOUNT, REPLYNUMBER, REPLYSTEP)
+VALUES (2, '허진경', '1234', 'hjk7902@gmail.com', '제목입니다.', '내용입니다.\n누구나 자유롭게 글을 작성할 수 있습니다', '2015-08-20', 2, 0, 0, 0);
+INSERT INTO BOARD (BBSNO, NAME, PASSWORD, EMAIL, SUBJECT, CONTENT, WRITEDATE, MASTERID, READCOUNT, REPLYNUMBER, REPLYSTEP)
+VALUES (3, 'heojk', '1', 'heojk@daum.net', '[Re]뭐라고요.', '게시글의 댓글입니다.', '2015-08-21', 1, 0, 1, 1);
 
 COMMIT;
 

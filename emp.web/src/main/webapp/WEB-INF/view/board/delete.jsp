@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html> 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
-<jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
+<jsp:include page="/WEB-INF/view/include/staticFiles.jsp"/>
 
 <body>
 <div class="container">
-<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+<jsp:include page="/WEB-INF/view/include/bodyHeader.jsp"/>
 <div class="content">
 	<h3>글 비밀번호를 입력하세요</h3>
-	<form action='<c:url value="/board/Board"/>' class="form-inline" method="post">
+	<form action='<c:url value="/board"/>' class="form-inline" method="post">
 	<input type="hidden" name="delete" value="${bbsno}">
 	<input type="hidden" name="replynumber" value="${replynumber}">
 	<input type="hidden" name="page" value="${page}">
@@ -20,6 +20,6 @@
 	</form>
 </div>
 </div>
-<jsp:include page="/WEB-INF/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/view/include/footer.jsp"/>
 </body>
 </html>

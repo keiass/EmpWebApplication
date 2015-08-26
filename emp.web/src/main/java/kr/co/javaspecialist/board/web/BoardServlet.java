@@ -18,12 +18,11 @@ import kr.co.javaspecialist.board.domain.BoardDAO;
 import kr.co.javaspecialist.board.domain.BoardVO;
 import kr.co.javaspecialist.emp.web.EmpServlet;
 
-@WebServlet("/board/Board")
+@WebServlet("/board")
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	static final Logger logger = Logger.getLogger(EmpServlet.class);
-
 
 	BoardDAO dao;
 	String contextPath;
@@ -116,7 +115,7 @@ public class BoardServlet extends HttpServlet {
 			path = "list"; 
 		}
 		
-		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/board/" + path + ".jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/view/board/" + path + ".jsp");
 		disp.forward(request, response);
 	}
 
@@ -148,7 +147,7 @@ public class BoardServlet extends HttpServlet {
 				board.setContent(content);
 				board.setPassword(password);
 				dao.insertArticle(board);
-				String url = contextPath + "/board/Board?list";
+				String url = contextPath + "/board?list";
 				response.sendRedirect(response.encodeRedirectURL(url));
 				return;
 			} else if("reply".equals(path)) {
@@ -173,7 +172,7 @@ public class BoardServlet extends HttpServlet {
 				
 				dao.replyArticle(board);
 				
-				response.sendRedirect(response.encodeRedirectURL(contextPath + "/board/Board?list&page="+page));
+				response.sendRedirect(response.encodeRedirectURL(contextPath + "/board?list&page="+page));
 				return;
 			} else if("update".equals(path)) {
 				String password = request.getParameter("password");
@@ -188,11 +187,12 @@ public class BoardServlet extends HttpServlet {
 					board.setSubject(request.getParameter("subject"));
 					board.setContent(request.getParameter("content"));
 					dao.updateArticle(board);
-					String url = contextPath + "/board/Board?view="+bbsno + "&page="+page;
+					String url = contextPath + "/board?view="+bbsno + "&page="+page;
 					response.sendRedirect(response.encodeRedirectURL(url));
 					return;
 				}else {
 					request.setAttribute("message", "비밀번호가 다릅니다. 수정되지 않았습니다.");
+					path = "error";
 				}
 			} else if("delete".equals(path)) {
 				String bbsnoStr = request.getParameter("delete");
@@ -206,7 +206,7 @@ public class BoardServlet extends HttpServlet {
 				String dbpw = dao.getPassword(bbsno);
 				if(dbpw.equals(password)) {
 					dao.deleteArticle(bbsno, replynumber);
-					String url = contextPath + "/board/Board?list" + "&page="+page;
+					String url = contextPath + "/board?list" + "&page="+page;
 					response.sendRedirect(response.encodeRedirectURL(url));
 					return;
 				}else {
@@ -222,7 +222,7 @@ public class BoardServlet extends HttpServlet {
 			path = "error";
 		}
 		
-		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/board/" + path + ".jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/view/board/" + path + ".jsp");
 		disp.forward(request, response);
 	}
 

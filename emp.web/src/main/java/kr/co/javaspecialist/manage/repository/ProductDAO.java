@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 import kr.co.javaspecialist.manage.domain.ProductVO;
+import kr.co.javaspecialist.manage.service.IProductDAO;
 
 public class ProductDAO implements IProductDAO { 
 	

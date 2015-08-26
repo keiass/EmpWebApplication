@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.co.javaspecialist.common.db.Util;
+import kr.co.javaspecialist.common.db.DBConn;
 
 
 public class DeptDAO implements IDeptDAO {
@@ -19,7 +19,7 @@ public class DeptDAO implements IDeptDAO {
 		ArrayList<DeptVO> listData = new ArrayList<DeptVO>();
 		String sql = "select * from dept";
 		try {
-			con = Util.getConnection();
+			con = DBConn.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {

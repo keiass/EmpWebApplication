@@ -2,6 +2,7 @@ package kr.co.javaspecialist.manage.service;
 
 import java.util.List;
 
+import kr.co.javaspecialist.manage.domain.BasketVO;
 import kr.co.javaspecialist.manage.domain.ProductVO;
 
 public interface IManageService {
@@ -13,4 +14,5 @@ public interface IManageService {
 	List<ProductVO> getProductInfoByName(String name);
 	List<ProductVO> getProductInfoByID(String id);
 	List<ProductVO> getProductInfoByDepartmentAndCategory(String dept, String category);
+	List<BasketVO> getBasketInfoByID(String userid);
 }

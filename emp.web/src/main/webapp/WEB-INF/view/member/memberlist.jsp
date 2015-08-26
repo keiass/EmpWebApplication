@@ -6,12 +6,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
-<jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
+<jsp:include page="/WEB-INF/view/include/staticFiles.jsp"/>
 
 <body>
 <div class="container">
 <div class="page">
-<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+<jsp:include page="/WEB-INF/view/include/bodyHeader.jsp"/>
 <div class="content">
 <h1>회원 전체 정보</h1>
 <%
@@ -54,7 +54,7 @@ for(MemberVO member : members) {
 %>
 </table>
 </div>
-<jsp:include page="/WEB-INF/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/view/include/footer.jsp"/>
 </div>
 </div>
 </body>

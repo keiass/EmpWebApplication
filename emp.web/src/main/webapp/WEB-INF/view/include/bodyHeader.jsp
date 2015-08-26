@@ -12,7 +12,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars icon-custom"></i>
                 </button>
-                <a class="navbar-brand" href="<c:url value='/index.jsp'/>" title="ssg dash">
+                <a class="navbar-brand" href="<c:url value='/'/>" title="ssg dash">
                 	<fmt:message key="title"/>
                 </a>
             </div>
@@ -41,31 +41,25 @@
                     <li class="dropdown">
                         <a href='<c:url value="/"/>' class="dropdown-toggle" data-toggle="dropdown">Board</a>
                         <ul class="dropdown-menu">
-                        	<li><a href="<c:url value='/board/Board'/>">Board Datatables List</a>
-                            <li><a href="<c:url value='/board/Board?list'/>">Board List</a>
-                            <li><a href="<c:url value='/board/Board?write'/>">Write New Article</a>
+                        	<li><a href="<c:url value='/board'/>">Board Datatables List</a>
+                            <li><a href="<c:url value='/board?list'/>">Board List</a>
+                            <li><a href="<c:url value='/board?write'/>">Write New Article</a>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <!-- li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search</a>
                         <ul class="dropdown-menu">
                             <li><a href="<c:url value='/manage/searchProductForm.jsp'/>">My Name</a></li>
                             <li><a href="<c:url value='/manage/searchProductByLocationForm.jsp'/>">By Location</a></li>
                             <li><a href="<c:url value='/manage/searchProductByDeptForm.jsp'/>">By Department</a></li>
                         </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">List</a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="<c:url value='/manage/Basket.do?action=list'/>">List</a>
-                        </ul>
-                    </li>
+                    </li-->
                     <li class="dropdown">
                         <a href='#' class="dropdown-toggle" data-toggle="dropdown">Emp Test</a>
                         <ul class="dropdown-menu">
-                            <li><a href='<c:url value="/emp/Emp?list"/>'>EMP List</a></li>
+                            <li><a href='<c:url value="/emp?list"/>'>EMP List</a></li>
         					<li role="separator" class="divider"></li>
-	    					<li><a href='<c:url value="/emp/Emp?insert"/>'>New Employment</a></li>
+	    					<li><a href='<c:url value="/emp?insert"/>'>New Employment</a></li>
                         </ul>
                     </li>
                     <li class="dropdown dropdown-aux animate-click" data-animate-in="animated bounceInUp" data-animate-out="animated fadeOutDown" style="z-index:500;">
@@ -87,10 +81,10 @@
                     </li>
                    <li><div>
                    <c:if test="${empty userid}">
-                   <br><a href="<c:url value='/view?member/loginform'/>" class="btn btn-danger">Sign in</a>
+                   <br><a href="<c:url value='/view?member/login'/>" class="btn btn-danger">Sign in</a>
                    </c:if>
                    <c:if test="${!empty userid}">
-                   <br><a href="<c:url value='/member/Login.do'/>" class="btn btn-danger">Sign Out</a>
+                   <br><a href="<c:url value='/login'/>" class="btn btn-danger">Sign Out</a>
                    </c:if>
                    </div>
                     </li>

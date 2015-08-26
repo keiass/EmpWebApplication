@@ -88,10 +88,10 @@ public class BoardDAO {
 //				//				+ " connect by prior bbsno=replyNumber "
 //				+ " order by masterid desc, replyNumber, replyStep)) "
 //				+ " where rnum between ? and ? "; //Oracle
-				String sql = "select bbsno, name, subject, writedate, readcount, email, masterid, replynumber, replystep " +
+				String sql = "select bbsno, name, subject, writedate, readcount, email, masterid, replynumber, replystep, rownum() as rnum " +
 						"from board order by masterid desc, replynumber, replystep limit 10 offset ?"; //PostgreSQL
 		int start = (page-1) * 10 +1;
-		int end = start + maxno-1;
+//		int end = start + maxno-1;
 		try {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -109,7 +109,7 @@ public class BoardDAO {
 				board.setReadcount(rs.getInt("readcount"));
 				board.setReplynumber(rs.getInt("replynumber"));
 				board.setReplystep(rs.getInt("replystep"));
-//				board.setSeq(rs.getInt("rnum"));
+				board.setSeq(rs.getInt("rnum"));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -129,8 +129,12 @@ public class BoardDAO {
 	public Collection<BoardVO> selectArticleList() {
 		Connection con = null;
 		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
-		String sql = "select bbsno, name, subject, writedate, readcount, email, masterid, replynumber, replystep " +
- 					 "from board order by masterid desc, replynumber, replystep limit 100 offset 0";
+
+		String sql = "select bbsno, name, subject, writedate, readcount, email, "
+					 + "masterid, replynumber, replystep, rownum() as rnum "
+					 + "from board "
+ 					 + "order by masterid desc, replynumber, replystep "
+ 					 + "limit 100 offset 0";
 		try {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -147,6 +151,7 @@ public class BoardDAO {
 				board.setMasterid(rs.getInt("masterid"));
 				board.setReplynumber(rs.getInt("replynumber"));
 				board.setReplystep(rs.getInt("replystep"));
+				board.setSeq(rs.getInt("rnum"));
 				list.add(board);
 			}
 		} catch (Exception e) {

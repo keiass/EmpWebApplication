@@ -1,4 +1,4 @@
-package kr.co.javaspecialist.manage.repository;
+package kr.co.javaspecialist.manage.service;
 
 import java.util.List;
 

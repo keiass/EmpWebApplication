@@ -1,6 +1,7 @@
 package kr.co.javaspecialist.emp.web;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -21,7 +22,7 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-@WebServlet("/emp/Emp")
+@WebServlet("/emp")
 public class EmpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static final Logger logger = Logger.getLogger(EmpServlet.class);
@@ -58,7 +59,7 @@ public class EmpServlet extends HttpServlet {
 			path = "list"; 
 			logger.info(emps);
 		}
-		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/emp/" + path + ".jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/view/emp/" + path + ".jsp");
 		disp.forward(request, response);
 	}
 

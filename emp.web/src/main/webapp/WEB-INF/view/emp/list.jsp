@@ -5,10 +5,10 @@
 <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <!DOCTYPE html>
 <html>
-<jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
+<jsp:include page="/WEB-INF/view/include/staticFiles.jsp"/>
 <body>
 <div class="container">
-<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+<jsp:include page="/WEB-INF/view/include/bodyHeader.jsp"/>
 <div class="content">
   <h3 class="panel-title">Emp List</h3>
   <datatables:table id="emps" data="${empList}" row="emp" theme="bootstrap3" cssClass="table table-striped" pageable="true" export="pdf">
@@ -33,6 +33,6 @@
 ${emp.empno}, ${emp.ename}, ${emp.job}<br>
 </c:forEach>
  --%>
-<jsp:include page="/WEB-INF/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/view/include/footer.jsp"/>
 </body>
 </html>

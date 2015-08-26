@@ -7,7 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.co.javaspecialist.common.db.Util;
+import kr.co.javaspecialist.common.db.DBConn;
 
 import org.apache.log4j.Logger;
 
@@ -20,7 +20,7 @@ public class EmpDAO implements IEmpDAO {
 		int rowCount = 0;
 		String sql = "select count(*) from emp";
 		try {
-			con = Util.getConnection();
+			con = DBConn.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
@@ -28,7 +28,7 @@ public class EmpDAO implements IEmpDAO {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} finally {
-			Util.closeConnection(con);
+			DBConn.closeConnection(con);
 		}
 		return rowCount;
 	}
@@ -38,7 +38,7 @@ public class EmpDAO implements IEmpDAO {
 		ArrayList<Integer> listData = new ArrayList<Integer>();
 		String sql = "select empno from emp";
 		try {
-			con = Util.getConnection();
+			con = DBConn.getConnection();
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -48,7 +48,7 @@ public class EmpDAO implements IEmpDAO {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} finally {
-			Util.closeConnection(con);
+			DBConn.closeConnection(con);
 		}
 		return listData;
 	}
@@ -56,7 +56,7 @@ public class EmpDAO implements IEmpDAO {
 	public ArrayList<EmpVO> getAllEmps() {
 		ArrayList<EmpVO> lists = new ArrayList<EmpVO>();
 		String sql = "select * from emp";
-		Connection con = Util.getConnection();
+		Connection con = DBConn.getConnection();
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -76,7 +76,7 @@ public class EmpDAO implements IEmpDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally { 
-			Util.closeConnection(con); 
+			DBConn.closeConnection(con); 
 		}
 		return lists;
 	}
@@ -87,7 +87,7 @@ public class EmpDAO implements IEmpDAO {
 		Connection con = null;
 		
 		try {
-			con = Util.getConnection();
+			con = DBConn.getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 
 			ResultSet rs = stmt.executeQuery();
@@ -99,7 +99,7 @@ public class EmpDAO implements IEmpDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally { 
-			Util.closeConnection(con); 
+			DBConn.closeConnection(con); 
 		}
 		
 		return columnNames;
@@ -111,7 +111,7 @@ public class EmpDAO implements IEmpDAO {
 		String sql = "insert into emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)" +
 				" values (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
-			con = Util.getConnection();
+			con = DBConn.getConnection();
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getEmpno());
@@ -127,7 +127,7 @@ public class EmpDAO implements IEmpDAO {
 //			System.out.println(e1.getMessage());
 			throw new RuntimeException(e1.getMessage());
 		} finally {
-			Util.closeConnection(con);
+			DBConn.closeConnection(con);
 //			if(con!=null) try {con.close();} catch (SQLException e1) {	}
 		}
 		return count;
@@ -136,7 +136,7 @@ public class EmpDAO implements IEmpDAO {
 	public int updateEmp(EmpVO vo) {
 		int count=0;
 		String sql = "update emp set ename=?, job=?, mgr=?, hiredate=?, sal=?, comm=?, deptno=? where empno=?";
-		Connection con = Util.getConnection();
+		Connection con = DBConn.getConnection();
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, vo.getEname());
@@ -155,7 +155,7 @@ public class EmpDAO implements IEmpDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
-			Util.closeConnection(con);
+			DBConn.closeConnection(con);
 		}
 		return count;
 	}
@@ -165,14 +165,14 @@ public class EmpDAO implements IEmpDAO {
 		int deletedRow = 0;
 		String sql = "delete from emp where empno=?";
 		try {
-			con = Util.getConnection();
+			con = DBConn.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
 			deletedRow = pstmt.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} finally {
-			Util.closeConnection(con);
+			DBConn.closeConnection(con);
 		}
 		return deletedRow;
 	}

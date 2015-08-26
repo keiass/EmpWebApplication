@@ -4,17 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
-<jsp:include page="/WEB-INF/include/staticFiles.jsp"/>
+<jsp:include page="/WEB-INF/view/include/staticFiles.jsp"/>
 
 <body>
 <div class="container">
 <div class="page">
-<jsp:include page="/WEB-INF/include/bodyHeader.jsp"/>
+<jsp:include page="/WEB-INF/view/include/bodyHeader.jsp"/>
 <div class="content">
 <h1>실행 결과</h1>
 <h2>${message}</h2>
 </div>
-<jsp:include page="/WEB-INF/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/view/include/footer.jsp"/>
 </div>
 </div>
 </body>
