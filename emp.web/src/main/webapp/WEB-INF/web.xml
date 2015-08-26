@@ -13,15 +13,6 @@
 	<listener>
 		<listener-class>kr.co.javaspecialist.emp.listener.WebDBInitializer</listener-class>
 	</listener>
-	<servlet>
-		<servlet-name>EmpServlet</servlet-name>
-		<servlet-class>kr.co.javaspecialist.emp.web.EmpServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>EmpServlet</servlet-name>
-		<url-pattern>/emp/Emp</url-pattern>
-	</servlet-mapping>
-
 
 	<filter>
 		<filter-name>dandelionFilter</filter-name>
@@ -48,20 +39,10 @@
 		<servlet-class>com.github.dandelion.core.web.DandelionServlet</servlet-class>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>ViewForwardServlet</display-name>
-		<servlet-name>ViewForwardServlet</servlet-name>
-		<servlet-class>kr.co.javaspecialist.common.web.ViewForwardServlet</servlet-class>
-	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>dandelionServlet</servlet-name>
 		<url-pattern>/dandelion-assets/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ViewForwardServlet</servlet-name>
-		<url-pattern>/view</url-pattern>
 	</servlet-mapping>
 
 </web-app>
