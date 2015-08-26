@@ -76,7 +76,7 @@ public class ProductDAO implements IProductDAO {
 		List<ProductVO> productList = new ArrayList<ProductVO>();
 		try {
 			con = getConnection();
-			String sql = "select product.*,member.name from product,member where member.name like ?";
+			String sql = "select * from product where member.name like ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%"+name+"%");
 			ResultSet rs = stmt.executeQuery();
@@ -89,7 +89,6 @@ public class ProductDAO implements IProductDAO {
 				vo.setUserId(rs.getString("name"));
 				vo.setKeyword(rs.getString("keyword"));
 				
-				vo.setLocation(rs.getString("location"));
 				vo.setProductImage(rs.getString("product_image"));
 				logger.info(vo.toString());
 				productList.add(vo);
@@ -108,7 +107,7 @@ public class ProductDAO implements IProductDAO {
 		List<ProductVO> productList = new ArrayList<ProductVO>();
 		try {
 			con = getConnection();
-			String sql = "select product.*,member.name from product,member where location like ?";
+			String sql = "select * from product where location like ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%"+location+"%");
 			ResultSet rs = stmt.executeQuery();
@@ -139,7 +138,7 @@ public class ProductDAO implements IProductDAO {
 		List<ProductVO> productList = new ArrayList<ProductVO>();
 		try {
 			con = getConnection();
-			String sql = "select product.*,member.name from product,member where product.userid=member.userid and deptname like ?";
+			String sql = "select * from product where deptname like ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%"+deptname+"%");
 			ResultSet rs = stmt.executeQuery();
@@ -149,7 +148,6 @@ public class ProductDAO implements IProductDAO {
 				vo.setProductId(rs.getInt("product_id"));
 				vo.setBarcode(rs.getString("barcode"));
 				vo.setProductName(rs.getString("product_name"));
-				vo.setUserId(rs.getString("name"));
 				vo.setKeyword(rs.getString("keyword"));
 				
 				vo.setLocation(rs.getString("location"));

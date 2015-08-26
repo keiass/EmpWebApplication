@@ -19,16 +19,16 @@ import kr.co.javaspecialist.manage.domain.ProductVO;
 import kr.co.javaspecialist.manage.service.IManageService;
 import kr.co.javaspecialist.manage.service.ManageService;
 
-@WebServlet("/manage/Search.do")
-public class ProductSearchController extends HttpServlet {
+@WebServlet("/manage")
+public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	IManageService manageService;
 //	productDao;
 //	BasketDAO basketDao;
-	static final Logger logger = Logger.getLogger(ProductSearchController.class);
+	static final Logger logger = Logger.getLogger(ProductServlet.class);
 
-	public ProductSearchController() {
+	public ProductServlet() {
 		super();
 		manageService = new ManageService();
 	}
@@ -72,7 +72,7 @@ public class ProductSearchController extends HttpServlet {
 //		List<ProductVO> lists = gson.fromJson(jsonStr, collectionType);
 //		System.out.println(lists);
 
-		RequestDispatcher disp = request.getRequestDispatcher("/manage/productListJSON.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/view/manage/productListJSON.jsp");
 		disp.forward(request, response);
 	}
 
@@ -102,7 +102,7 @@ public class ProductSearchController extends HttpServlet {
 		request.setAttribute("productList", productList);
 
 
-		RequestDispatcher disp = request.getRequestDispatcher("/manage/productList.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/view/manage/productList.jsp");
 		disp.forward(request, response);
 	}
 

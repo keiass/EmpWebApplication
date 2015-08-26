@@ -46,14 +46,14 @@
                             <li><a href="<c:url value='/board?write'/>">Write New Article</a>
                         </ul>
                     </li>
-                    <!-- li class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search</a>
                         <ul class="dropdown-menu">
-                            <li><a href="<c:url value='/manage/searchProductForm.jsp'/>">My Name</a></li>
-                            <li><a href="<c:url value='/manage/searchProductByLocationForm.jsp'/>">By Location</a></li>
-                            <li><a href="<c:url value='/manage/searchProductByDeptForm.jsp'/>">By Department</a></li>
+                            <li><a href="<c:url value='/view?manage/searchProductForm'/>">My Name</a></li>
+                            <li><a href="<c:url value='/view?manage/searchProductByLocationForm'/>">By Location</a></li>
+                            <li><a href="<c:url value='/view?manage/searchProductByDeptForm'/>">By Department</a></li>
                         </ul>
-                    </li-->
+                    </li>
                     <li class="dropdown">
                         <a href='#' class="dropdown-toggle" data-toggle="dropdown">Emp Test</a>
                         <ul class="dropdown-menu">
