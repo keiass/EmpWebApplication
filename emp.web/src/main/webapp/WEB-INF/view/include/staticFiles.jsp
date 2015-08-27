@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     
-    <title><fmt:message key="title"/></title>
+    <title><fmt:message key="TITLE"/></title>
     <!-- Favicon -->
     <link href="<c:url value='/images/favicon.png'/>" rel="icon" type="image/png">
 

@@ -1,48 +1,66 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle basename="i18n/header" />
 <!DOCTYPE html> 
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
 <jsp:include page="/WEB-INF/view/include/staticFiles.jsp"/>
-
 <body>
 <div class="container">
-<div class="page">
 <jsp:include page="/WEB-INF/view/include/bodyHeader.jsp"/>
+<div class="pg-opt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2><a href="<c:url value='/view?member/login'/>"><fmt:message key="SIGN_IN"/></a></h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li>Member</li>
+                    <li class="active">Login</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="content">
 <%--
 String userid = (String)session.getAttribute("userid");
 if(userid==null) {
 --%>
 <c:if test="${empty sessionScope.userid}">
-	<h3>로그인 폼</h3>
-	<h4>${message}</h4>
-	<h4><%--= request.getAttribute("message") --%></h4>
-	<h4><%-- 
+	<h4><fmt:message key="${not empty message ? message : 'BLANK'}"/></h4>
+	<%--= request.getAttribute("message") --%>
+	<%-- 
 		String message = (String)request.getAttribute("message");
 		out.println(message);
-	--%></h4>
+	--%>
 	<form action="<c:url value='/login'/>" method="post"  class="form-inline">
-	아이디 : <input type="text" class="form-control" name="userid"><br>
-	비밀번호 : <input type="password"  class="form-control" name="password"><br>
-	<input type="submit" class="btn btn-default" value="로그인">
-	<input type="reset" class="btn btn-default" value="취  소">
+	<div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">ID</span>
+      <input type="text" name="userid" class="form-control" placeholder="<fmt:message key="ID"/>" aria-describedby="basic-addon1">
+    </div><p>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">PW</span>
+      <input type="password" name="password" class="form-control" placeholder="<fmt:message key="PW"/>" aria-describedby="basic-addon1">
+    </div><p><p>
+	<input type="submit" class="btn btn-info" value="<fmt:message key="SIGN_IN"/>">
+	<input type="reset" class="btn btn-info" value="<fmt:message key="CANCEL"/>">
+	
 	</form>
 </c:if>
 <%--
 }else {
 --%>
 <c:if test="${not empty sessionScope.userid}">
-	<h1>${userid}님 로그인</h1>
-	<a href="<c:url value='/member?select'/>">정보수정</a>
-	<a href="<c:url value='/login'/>">로그아웃</a>
-	<a href="<c:url value='/member?delete'/>">회원탈퇴</a>
+	<h4><fmt:message key="SIGN_IN"/>: ${userid}</h4>
+	<a href="<c:url value='/member?select'/>">[<fmt:message key="UPDATE_USER_INFO"/>]</a>
+	<a href="<c:url value='/login'/>">[<fmt:message key="SIGN_OUT"/>]</a>
+	<a href="<c:url value='/member?delete'/>">[<fmt:message key="EXIT_MEMBER"/>]</a>
 </c:if>
 </div>
+</div>
 <jsp:include page="/WEB-INF/view/include/footer.jsp"/>
-</div>
-</div>
 </body>
 </html>
 

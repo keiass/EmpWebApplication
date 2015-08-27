@@ -12,8 +12,8 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars icon-custom"></i>
                 </button>
-                <a class="navbar-brand" href="<c:url value='/'/>" title="ssg dash">
-                	<fmt:message key="title"/>
+                <a class="navbar-brand" href="<c:url value='/'/>" title="">
+                	<fmt:message key="TITLE"/>
                 </a>
             </div>
             <div class="navbar-collapse collapse">
@@ -33,33 +33,33 @@
                         </div>
                     </li>
                     <li class="dropdown">
-                        <a href='<c:url value="/"/>' class="dropdown-toggle"><fmt:message key="menu_dashboard"/></a>
+                        <a href='<c:url value="/"/>' class="dropdown-toggle"><fmt:message key="DASHBOARD"/></a>
                         <!-- ul class="dropdown-menu">
                             <li><a href='<c:url value="/"/>'><fmt:message key="menu_dashboard"/></a></li>
                         </ul-->
                     </li>
                     <li class="dropdown">
-                        <a href='<c:url value="/"/>' class="dropdown-toggle" data-toggle="dropdown">Board</a>
+                        <a href='<c:url value="/"/>' class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="BOARD"/></a>
                         <ul class="dropdown-menu">
-                        	<li><a href="<c:url value='/board'/>">Board Datatables List</a>
-                            <li><a href="<c:url value='/board?list'/>">Board List</a>
-                            <li><a href="<c:url value='/board?write'/>">Write New Article</a>
+                        	<li><a href="<c:url value='/board'/>"><fmt:message key="BOARD_DATATABLES_LIST"/></a>
+                            <li><a href="<c:url value='/board?list'/>"><fmt:message key="BOARD_LIST"/></a>
+                            <li><a href="<c:url value='/board?write'/>"><fmt:message key="WRITE_NEW_ARTICLE"/></a>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="SEARCH"/></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<c:url value='/view?manage/searchProductForm'/>">My Name</a></li>
-                            <li><a href="<c:url value='/view?manage/searchProductByLocationForm'/>">By Location</a></li>
-                            <li><a href="<c:url value='/view?manage/searchProductByDeptForm'/>">By Department</a></li>
+                            <li><a href="<c:url value='/view?manage/searchProductForm'/>"><fmt:message key="BY_NAME"/></a></li>
+                            <li><a href="<c:url value='/view?manage/searchProductByLocationForm'/>"><fmt:message key="BY_LOCATION"/></a></li>
+                            <li><a href="<c:url value='/view?manage/searchProductByDeptForm'/>"><fmt:message key="BY_DEPARTMENT"/></a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href='#' class="dropdown-toggle" data-toggle="dropdown">Emp Test</a>
+                        <a href='#' class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="EMP_TEST"/></a>
                         <ul class="dropdown-menu">
-                            <li><a href='<c:url value="/emp?list"/>'>EMP List</a></li>
+                            <li><a href='<c:url value="/emp?list"/>'><fmt:message key="EMP_LIST"/></a></li>
         					<li role="separator" class="divider"></li>
-	    					<li><a href='<c:url value="/emp?insert"/>'>New Employment</a></li>
+	    					<li><a href='<c:url value="/emp?insert"/>'><fmt:message key="NEW_EMPLOYMENT"/></a></li>
                         </ul>
                     </li>
                     <li class="dropdown dropdown-aux animate-click" data-animate-in="animated bounceInUp" data-animate-out="animated fadeOutDown" style="z-index:500;">
@@ -81,15 +81,14 @@
                     </li>
                    <li><div>
                    <c:if test="${empty userid}">
-                   <br><a href="<c:url value='/view?member/login'/>" class="btn btn-danger">Sign in</a>
+                   <br><a href="<c:url value='/view?member/login'/>" class="btn btn-danger"><fmt:message key="SIGN_IN"/></a>
                    </c:if>
                    <c:if test="${!empty userid}">
-                   <br><a href="<c:url value='/login'/>" class="btn btn-danger">Sign Out</a>
+                   <br><a href="<c:url value='/view?member/login'/>" class="btn btn-danger"><fmt:message key="MY_INFO"/></a>
                    </c:if>
                    </div>
                     </li>
                 </ul>
-               
             </div><!--/.nav-collapse -->
         </div>
     </div>

@@ -15,9 +15,6 @@ import kr.co.javaspecialist.manage.service.ManageService;
 import kr.co.javaspecialist.member.domain.MemberDAO;
 import kr.co.javaspecialist.member.domain.MemberVO;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -47,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		if(dbPassword == null) {
 			//아이디가 없음
 			session.invalidate();
-			request.setAttribute("message", "그런 사람 없어요.");
+			request.setAttribute("message", "NOT_VALID_USER");
 			url = "/member/login.jsp";
 		}else {
 			//아이디 있음
@@ -60,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 			}else {
 				//비밀번호 불일치
 				session.invalidate();
-				request.setAttribute("message", "비밀번호가 다릅니다.");
+				request.setAttribute("message", "WRONG_PASSWORD");
 				url = "/member/login.jsp";
 			}
 		}
