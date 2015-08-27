@@ -45,7 +45,7 @@ public class ProductDAO implements IProductDAO {
 		List<ProductVO> productList = new ArrayList<ProductVO>();
 		try {
 			con = getConnection();
-			String sql = "select product.*,member.name from product,member where keyword like ?";
+			String sql = "select * from product where keyword like ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%"+keyword+"%");
 			ResultSet rs = stmt.executeQuery();
@@ -55,10 +55,9 @@ public class ProductDAO implements IProductDAO {
 				vo.setProductId(rs.getInt("product_id"));
 				vo.setBarcode(rs.getString("barcode"));
 				vo.setProductName(rs.getString("product_name"));
-				vo.setUserId(rs.getString("name"));
+//				vo.setCompany(rs.getString("company"));
 				vo.setKeyword(rs.getString("keyword"));
-				
-				vo.setLocation(rs.getString("location"));
+//				vo.setLocation(rs.getString("location"));
 				vo.setProductImage(rs.getString("product_image"));
 				logger.info(vo.toString());
 				productList.add(vo);
@@ -76,7 +75,7 @@ public class ProductDAO implements IProductDAO {
 		List<ProductVO> productList = new ArrayList<ProductVO>();
 		try {
 			con = getConnection();
-			String sql = "select * from product where member.name like ?";
+			String sql = "select * from product where product_name like ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%"+name+"%");
 			ResultSet rs = stmt.executeQuery();
@@ -86,7 +85,6 @@ public class ProductDAO implements IProductDAO {
 				vo.setProductId(rs.getInt("product_id"));
 				vo.setBarcode(rs.getString("barcode"));
 				vo.setProductName(rs.getString("product_name"));
-				vo.setUserId(rs.getString("name"));
 				vo.setKeyword(rs.getString("keyword"));
 				
 				vo.setProductImage(rs.getString("product_image"));
@@ -107,7 +105,7 @@ public class ProductDAO implements IProductDAO {
 		List<ProductVO> productList = new ArrayList<ProductVO>();
 		try {
 			con = getConnection();
-			String sql = "select * from product where location like ?";
+			String sql = "select * from product where company like ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%"+location+"%");
 			ResultSet rs = stmt.executeQuery();
@@ -117,10 +115,8 @@ public class ProductDAO implements IProductDAO {
 				vo.setProductId(rs.getInt("product_id"));
 				vo.setBarcode(rs.getString("barcode"));
 				vo.setProductName(rs.getString("product_name"));
-				vo.setUserId(rs.getString("name"));
 				vo.setKeyword(rs.getString("keyword"));
 				
-				vo.setLocation(rs.getString("location"));
 				vo.setProductImage(rs.getString("product_image"));
 				logger.info(vo.toString());
 				productList.add(vo);
@@ -138,7 +134,7 @@ public class ProductDAO implements IProductDAO {
 		List<ProductVO> productList = new ArrayList<ProductVO>();
 		try {
 			con = getConnection();
-			String sql = "select * from product where deptname like ?";
+			String sql = "select * from product where details like ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, "%"+deptname+"%");
 			ResultSet rs = stmt.executeQuery();
@@ -150,7 +146,6 @@ public class ProductDAO implements IProductDAO {
 				vo.setProductName(rs.getString("product_name"));
 				vo.setKeyword(rs.getString("keyword"));
 				
-				vo.setLocation(rs.getString("location"));
 				vo.setProductImage(rs.getString("product_image"));
 				logger.info(vo.toString());
 				productList.add(vo);
